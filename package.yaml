@@ -1,0 +1,47 @@
+name: 口碑捍卫者
+repo: bangwozuo/review-firefighter-zh
+legacy_name: 差评灭火官
+version: 0.2.0
+asset_type: prompt-only
+stage: P0
+complexity: M（仅连接器一项为 M）
+group: 本地生活商家
+runtime_dependencies: none
+api_key_required: false
+demand_ids:
+  - D01
+  - D08
+  - D28
+  - D29
+
+workflows:
+  - name: 评价采集与分级
+    id: de_local_02_wf01
+  - name: 好评感谢回复生成
+    id: de_local_02_wf02
+  - name: 差评灭火回复生成
+    id: de_local_02_wf03
+  - name: 差评根因归类
+    id: de_local_02_wf04
+  - name: 月度口碑报告
+    id: de_local_02_wf05
+
+skills:
+  - id: platform-review-collect
+    name: 平台评价采集
+    family: 
+  - id: review-reply-generate
+    name: 点评回复生成
+    family: 
+  - id: negative-review-script-lib
+    name: 差评应对话术库
+    family: 
+  - id: reply-compliance-review
+    name: 回复合规审核
+    family: 
+
+compliance:
+  ai_label_required: true
+  human_review_required: true
+  forbidden_words_check: true
+  official_api_only: true

@@ -1,0 +1,75 @@
+{
+  "skill_id": "de_local_02_sk03",
+  "name": "差评应对话术库",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["reviews"],
+    "properties": {
+      "reviews": {
+        "type": "string",
+        "description": "差评原文（含星级、关键词、菜品/环节细节）",
+        "maxLength": 5000
+      },
+      "root_cause": {
+        "type": "string",
+        "description": "已判定的根因标签（物流/质量/期望差/服务/价格）；缺省由分类树判定"
+      },
+      "policy": {
+        "type": "string",
+        "description": "可用的补偿方式与授权上限，如「券最高 15 元」"
+      },
+      "order_amount": {
+        "type": "number",
+        "description": "订单实付金额（元），决定补偿梯度：<50 / 50-200 / >200"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["replies", "root_cause", "recovery"],
+    "properties": {
+      "replies": {
+        "type": "array",
+        "description": "逐条差评的话术方案",
+        "items": {
+          "type": "object",
+          "properties": {
+            "根因": {"type": "string", "enum": ["物流", "质量", "期望差", "服务", "价格", "疑似恶意差评"]},
+            "命中依据": {"type": "string", "description": "差评原话摘录"},
+            "公开回复": {"type": "string", "description": "60-120 字，含致歉/复述/措施/渠道四要素"},
+            "私信补救话术": {"type": "string"},
+            "补偿方案": {"type": "string", "description": "落在补偿梯度内且不超授权"},
+            "是否需人工确认": {"type": "boolean"}
+          }
+        }
+      },
+      "root_cause": {
+        "type": "object",
+        "description": "归因结果与依据（多重命中时按 质量>服务>物流>期望差>价格 取主根因）"
+      },
+      "recovery": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "可执行补救动作清单；涉及补偿标注需人工确认"
+      },
+      "escalation": {
+        "type": "array",
+        "items": {"type": "object", "properties": {"差评ID": {"type": "string"}, "触发信号": {"type": "string"}, "建议动作": {"type": "string"}}},
+        "description": "升级预警清单（12315/媒体曝光/律师函/集体投诉/食安中毒）；无则为空"
+      }
+    },
+    "x-rendered-from": "capability:review_reply"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "reply_length_range": [60, 120],
+    "response_window_hours": 2,
+    "reply_rate_target": "100%",
+    "compensation_tiers": {"lt50": "5-10元券", "50-200": "订单额10%-20%", "gt200": "专人对接+电话"},
+    "forbidden": ["删差评交换补偿", "返现换好评", "亲亲/宝宝等过度亲昵称呼"],
+    "escalation_signals": ["12315", "媒体曝光", "律师函", "集体投诉", "食品安全中毒"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "skill_id": "de_local_02_sk04",
+  "name": "回复合规审核",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["text"],
+    "properties": {
+      "text": {
+        "type": "string",
+        "description": "待审文本：公开回复 / 私信话术 / 补偿方案文案（多条用编号分隔）",
+        "maxLength": 5000
+      },
+      "platform": {
+        "type": "string",
+        "description": "发布平台：美团 / 点评 / 抖音 / 小红书 / 通用"
+      },
+      "policy": {
+        "type": "string",
+        "description": "商家补偿授权口径，用于核对金额与折扣表述是否超授权"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["verdict", "violations", "suggestions"],
+    "properties": {
+      "verdict": {
+        "type": "object",
+        "description": "审核结论：受检文本量 / 三级计数 / 整体判定（通过 / 修改后发布 / 退回重写）",
+        "properties": {
+          "红线": {"type": "integer"},
+          "警告": {"type": "integer"},
+          "提示": {"type": "integer"},
+          "整体判定": {"type": "string", "enum": ["通过", "修改后发布", "退回重写"]}
+        }
+      },
+      "violations": {
+        "type": "array",
+        "description": "逐项违规清单，按级别排序",
+        "items": {
+          "type": "object",
+          "properties": {
+            "#": {"type": "string"},
+            "级别": {"type": "string", "enum": ["🔴 红线", "🟡 警告", "🔵 提示"]},
+            "原文片段": {"type": "string"},
+            "命中红线": {"type": "string", "enum": ["诱导删改评价", "过度承诺与虚假信息", "隐私与不当互动"]},
+            "依据": {"type": "string"},
+            "合规改法": {"type": "string", "description": "可直接替换的文本"}
+          }
+        }
+      },
+      "suggestions": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "整体改写方向与需人工核实的事实项"
+      }
+    },
+    "x-rendered-from": "capability:compliance_check"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "redline_categories": ["诱导删改评价", "过度承诺与虚假信息", "隐私与不当互动"],
+    "banned_terms": ["删差评", "改好评", "好评返现", "评价换礼", "亲亲", "宝宝", "小主"],
+    "legal_basis": ["《反不正当竞争法》第八条", "《广告法》第九条", "《个人信息保护法》"],
+    "context_merge_rule": "分句书写不豁免，按语境合并判定",
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

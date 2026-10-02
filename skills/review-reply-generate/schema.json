@@ -1,0 +1,73 @@
+{
+  "skill_id": "de_local_02_sk02",
+  "name": "点评回复生成",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["reviews"],
+    "properties": {
+      "reviews": {
+        "type": "string",
+        "description": "评价原文（含星级/文字/提及的菜品、店员、环节细节）",
+        "maxLength": 5000
+      },
+      "root_cause": {
+        "type": "string",
+        "description": "已判定的根因标签；缺省由本技能按星级分档判定"
+      },
+      "policy": {
+        "type": "string",
+        "description": "处置口径：可用的补偿方式与授权边界（差评档适用）"
+      },
+      "batch": {
+        "type": "array",
+        "description": "批量模式：多条评价数组 [{id, stars, text}]，用于开头句去重"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["replies", "root_cause", "recovery"],
+    "properties": {
+      "replies": {
+        "type": "array",
+        "description": "逐条评价的回复",
+        "items": {
+          "type": "object",
+          "properties": {
+            "#": {"type": "string"},
+            "星级": {"type": "string", "enum": ["4-5星", "3星", "1-2星"]},
+            "引用细节": {"type": "string", "description": "从评价原文提取的具体细节（菜名/店员/环节）"},
+            "回复文案": {"type": "string", "description": "好评 50-100 字 / 中差评 60-120 字"},
+            "字数": {"type": "integer"},
+            "处置动作": {"type": "string"}
+          }
+        }
+      },
+      "root_cause": {
+        "type": "object",
+        "description": "星级分档判定与依据"
+      },
+      "recovery": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "可执行补救动作；涉及补偿标注需人工确认"
+      },
+      "escalation": {
+        "type": "array",
+        "items": {"type": "object", "properties": {"评价ID": {"type": "string"}, "触发信号": {"type": "string"}, "建议动作": {"type": "string"}}},
+        "description": "转人工清单（12315/媒体曝光/律师函/集体投诉/食安中毒）；无则为空"
+      }
+    },
+    "x-rendered-from": "capability:review_reply"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "reply_length": {"positive": [50, 100], "neutral_negative": [60, 120]},
+    "response_window_hours": 2,
+    "detail_quote_required": true,
+    "forbidden": ["好评返现", "评价换礼", "亲亲/宝宝等称呼", "万能模板单句回复"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "shop": "陈记酸菜鱼（万达店）",
+  "policy": "券/退款单笔授权上限 20 元",
+  "now": "2026-09-30 09:00",
+  "reviews": [
+    {"id": "M-2202", "platform": "美团", "text": "等了45分钟才上菜，孩子都饿哭了，上错菜一次", "order_amount": 34, "review_time": "2026-09-30 08:10", "reply_status": "未回复", "order_id": "MT90018"},
+    {"id": "M-2206", "platform": "美团", "text": "涨价了分量还少，不值这个价", "order_amount": 26, "review_time": "2026-09-30 07:55", "reply_status": "未回复", "order_id": "MT90021"},
+    {"id": "P-3308", "platform": "点评", "text": "图片和实物不符，宣传的大份上来的很小", "order_amount": 88, "review_time": "2026-09-29 20:30", "reply_status": "未回复", "order_id": "DP20090"},
+    {"id": "M-2201", "platform": "美团", "text": "鱼汤里有头发丝，已经打12315了", "order_amount": 128, "review_time": "2026-09-30 08:12", "reply_status": "未回复", "order_id": "MT90012"},
+    {"id": "D-1105", "platform": "抖音", "text": "再也不来了", "order_amount": null, "review_time": "2026-09-29 22:00", "reply_status": "已回复", "order_id": "DY10051"}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "shop": "陈记酸菜鱼（万达店）",
+  "campaign": "新品藤椒鱼（10 月上新）",
+  "reviews": [
+    {"id": "D-1104", "platform": "抖音", "stars": 4, "text": "酸菜很正，鱼片嫩，下次还来", "has_image": true, "review_time": "2026-09-29 20:11"},
+    {"id": "P-3305", "platform": "点评", "stars": 5, "text": "环境好服务好，性价比高，值得推荐，已经第三次来了", "has_image": false, "review_time": "2026-09-29 19:30"},
+    {"id": "M-2203", "platform": "美团", "stars": 5, "text": "小陈服务太周到了，主动帮我们分鱼还多送了小菜", "has_image": true, "review_time": "2026-09-29 18:44"},
+    {"id": "M-2204", "platform": "美团", "stars": 5, "text": "好吃！", "has_image": false, "review_time": "2026-09-29 18:02"},
+    {"id": "P-3307", "platform": "点评", "stars": 5, "text": "", "has_image": false, "review_time": "2026-09-29 17:31"}
+  ]
+}

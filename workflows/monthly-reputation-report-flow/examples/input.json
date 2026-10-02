@@ -1,0 +1,121 @@
+{
+  "shop": "陈记酸菜鱼（万达店）",
+  "month": "2026-09",
+  "last_month": {
+    "月均分": 4.3,
+    "好评率": 0.82,
+    "差评数": 14
+  },
+  "competitors": [
+    {
+      "shop": "江渔儿酸菜鱼（同商圈）",
+      "stars": 4.5,
+      "review_count": 3200
+    },
+    {
+      "shop": "太二酸菜鱼（同商圈）",
+      "stars": 4.6,
+      "review_count": 5100
+    }
+  ],
+  "reviews": [
+    {
+      "id": "R-001",
+      "stars": 5,
+      "text": "酸菜很正鱼片嫩",
+      "review_time": "2026-09-02 12:10",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-002",
+      "stars": 4,
+      "text": "环境好服务好",
+      "review_time": "2026-09-03 19:30",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-003",
+      "stars": 5,
+      "text": "第三次来了，性价比高",
+      "review_time": "2026-09-05 18:44",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-004",
+      "stars": 2,
+      "text": "等了45分钟才上菜，上错菜",
+      "review_time": "2026-09-08 12:05",
+      "reply_status": "未回复"
+    },
+    {
+      "id": "R-005",
+      "stars": 4,
+      "text": "味道不错，下次还来",
+      "review_time": "2026-09-09 19:02",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-006",
+      "stars": 1,
+      "text": "鱼汤里有头发丝",
+      "review_time": "2026-09-12 08:12",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-007",
+      "stars": 3,
+      "text": "口味一般，上菜稍慢",
+      "review_time": "2026-09-13 20:11",
+      "reply_status": "未回复"
+    },
+    {
+      "id": "R-008",
+      "stars": 2,
+      "text": "等了两小时，桌子油腻腻",
+      "review_time": "2026-09-16 21:05",
+      "reply_status": "未回复"
+    },
+    {
+      "id": "R-009",
+      "stars": 5,
+      "text": "小陈服务周到，主动分鱼",
+      "review_time": "2026-09-18 18:30",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-010",
+      "stars": 2,
+      "text": "涨价了分量还少，不值",
+      "review_time": "2026-09-20 12:22",
+      "reply_status": "未回复"
+    },
+    {
+      "id": "R-011",
+      "stars": 4,
+      "text": "酸菜鱼很正",
+      "review_time": "2026-09-22 19:40",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-012",
+      "stars": 1,
+      "text": "服务员爱答不理，催单被怼",
+      "review_time": "2026-09-25 12:55",
+      "reply_status": "未回复"
+    },
+    {
+      "id": "R-013",
+      "stars": 5,
+      "text": "环境好，值得推荐",
+      "review_time": "2026-09-27 20:15",
+      "reply_status": "已回复"
+    },
+    {
+      "id": "R-014",
+      "stars": 2,
+      "text": "外卖等了90分钟，到手凉透了",
+      "review_time": "2026-09-28 19:20",
+      "reply_status": "未回复"
+    }
+  ]
+}

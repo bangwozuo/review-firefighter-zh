@@ -1,0 +1,78 @@
+{
+  "workflow_id": "de_local_02_wf02",
+  "name": "好评感谢回复生成",
+  "type": "composite",
+  "skill_refs": ["de_local_02_sk02", "de_local_02_sk04"],
+  "input": {
+    "type": "object",
+    "required": ["reviews"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "campaign": {"type": "string", "description": "进行中的活动（会员日/新品等）；缺省则全部纯感谢，不硬凑引导"},
+      "reviews": {
+        "type": "array",
+        "description": "好评数组（仅 4-5 星；混入差评即退出码 2 退回分级流程）",
+        "items": {
+          "type": "object",
+          "required": ["id", "platform", "stars"],
+          "properties": {
+            "id": {"type": "string"},
+            "platform": {"type": "string", "enum": ["美团", "点评", "抖音"]},
+            "stars": {"type": "integer", "minimum": 4, "maximum": 5},
+            "text": {"type": "string", "description": "评价正文；纯星级传空串"},
+            "has_image": {"type": "boolean", "description": "是否带图（转化价值权重）"},
+            "review_time": {"type": "string"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "items"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "分型计数 / 细节覆盖率（目标≥60%）/ 开头句重复（=0）/ 引导占比（≤30%）",
+        "properties": {
+          "好评总数": {"type": "integer"},
+          "细节覆盖率": {"type": "string"},
+          "开头句重复": {"type": "integer", "maximum": 0},
+          "引导条数/占比": {"type": "string"}
+        }
+      },
+      "items": {
+        "type": "array",
+        "description": "感谢回复工作台",
+        "items": {
+          "type": "object",
+          "properties": {
+            "评价ID": {"type": "string"},
+            "分型": {"type": "string", "enum": ["长文好评", "带图好评", "短好评", "纯星级"]},
+            "提取细节": {"type": "string", "description": "菜品/人物/动作/数字四类；无命中标「无细节」"},
+            "开头句": {"type": "string"},
+            "回复骨架": {"type": "string", "description": "模型润色为 50-100 字成稿"},
+            "轻引导": {"type": "string"},
+            "发布": {"type": "string", "description": "待店主确认"}
+          }
+        }
+      }
+    },
+    "x-rendered-from": "capability:thanks_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/感谢回复工作台.xlsx", "out/thanks_flow.json"],
+  "constraints": {
+    "stars_floor": 4,
+    "reply_length": [50, 100],
+    "detail_coverage_target": "≥ 60%",
+    "lead_cap_ratio": 0.30,
+    "lead_eligible": ["带图好评", "长文好评"],
+    "forbidden": ["索好评", "评价换礼", "亲亲/宝宝等称呼", "编造细节"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

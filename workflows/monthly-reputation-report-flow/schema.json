@@ -1,0 +1,102 @@
+{
+  "workflow_id": "de_local_02_wf05",
+  "name": "月度口碑报告",
+  "type": "composite",
+  "skill_refs": ["de_local_02_sk01", "de_local_02_sk02", "de_local_02_sk03", "de_local_02_sk04"],
+  "input": {
+    "type": "object",
+    "required": ["reviews"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "month": {"type": "string", "description": "报告月份，如 2026-09（月窗口界定）"},
+      "last_month": {
+        "type": "object",
+        "description": "上月基期；缺失则环比标注「基期缺失」，不编造",
+        "properties": {
+          "月均分": {"type": "number"},
+          "好评率": {"type": "number"},
+          "差评数": {"type": "integer"}
+        }
+      },
+      "competitors": {
+        "type": "array",
+        "description": "竞店数组（平台公开榜单人工抄录，需注日期）；缺失则对比区块标注缺失",
+        "items": {
+          "type": "object",
+          "properties": {
+            "shop": {"type": "string"},
+            "stars": {"type": "number"},
+            "review_count": {"type": "integer"}
+          }
+        }
+      },
+      "reviews": {
+        "type": "array",
+        "description": "当月全量评价；星级越界退出码 2，窗口外剔除并显式计数",
+        "items": {
+          "type": "object",
+          "required": ["id", "stars"],
+          "properties": {
+            "id": {"type": "string"},
+            "stars": {"type": "integer", "minimum": 1, "maximum": 5},
+            "text": {"type": "string"},
+            "review_time": {"type": "string"},
+            "reply_status": {"type": "string", "enum": ["已回复", "未回复"], "description": "缺失按「未回复」保守计入缺口"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "trend", "causes", "reply"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "月均分 / 环比 / 好评率 / 差评回复率 / 根因Top2 / 样本量提示",
+        "properties": {
+          "月均分": {"type": "number"},
+          "环比": {"type": "string"},
+          "好评率": {"type": "string"},
+          "差评回复率": {"type": "string"},
+          "根因Top2": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "trend": {
+        "type": "object",
+        "description": "周均分序列 W1-W5；0 评价周显示「无数据」断线，不补零",
+        "properties": {
+          "周序列": {"type": "array"},
+          "月均分": {"type": "number"},
+          "环比": {"type": "string"}
+        }
+      },
+      "causes": {"type": "object", "description": "六环节差评分布（条数+占比）"},
+      "reply": {
+        "type": "object",
+        "description": "回复率对账：差评数/已回复/回复率/未回复差评ID清单",
+        "properties": {
+          "差评回复率": {"type": "string"},
+          "未回复差评ID": {"type": ["array", "string"]}
+        }
+      },
+      "competitors": {"type": "object", "description": "竞店对比表或缺失标注"}
+    },
+    "x-rendered-from": "capability:monthly_report_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/月度口碑报告.docx", "out/评分趋势.png", "out/monthly_report.json"],
+  "constraints": {
+    "reply_rate_target": "100%",
+    "golden_window": "2 小时内响应占比",
+    "trend_rule": "0 评价周断线不补零；全月 <10 条标注「样本量小」",
+    "missing_data_rule": "基期/竞店缺失如实标注，不编造",
+    "actions_cap": "下月必改动作 ≤3 个（动作+指标+责任人）",
+    "competitor_source": "平台公开榜单，不爬取",
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

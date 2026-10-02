@@ -1,0 +1,92 @@
+{
+  "workflow_id": "de_local_02_wf04",
+  "name": "差评根因归类",
+  "type": "composite",
+  "skill_refs": ["de_local_02_sk03"],
+  "input": {
+    "type": "object",
+    "required": ["reviews"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "week_start": {"type": "string", "description": "本周期起始日（默认自然周周一，ISO 日期）"},
+      "last_week": {
+        "type": "object",
+        "description": "上周各环节计数，用于周环比；缺省标注「基期缺失」",
+        "properties": {
+          "菜品质量": {"type": "integer"},
+          "服务态度": {"type": "integer"},
+          "等位与出餐": {"type": "integer"},
+          "环境卫生": {"type": "integer"},
+          "价格感知": {"type": "integer"},
+          "物流配送": {"type": "integer"}
+        }
+      },
+      "reviews": {
+        "type": "array",
+        "description": "本周期差评数组；窗口外数据剔除并显式计数，不混入统计",
+        "items": {
+          "type": "object",
+          "required": ["id", "text"],
+          "properties": {
+            "id": {"type": "string"},
+            "text": {"type": "string", "description": "差评原文；纯星级传空串归「待定性」"},
+            "stars": {"type": "integer"},
+            "review_time": {"type": "string", "description": "发布时间（ISO），用于周窗口界定"},
+            "order_amount": {"type": "number"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "stat", "todo"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "窗口内差评数 / 必改环节 / 食安相关数 / 多标差评数",
+        "properties": {
+          "差评总数（窗口内）": {"type": "integer"},
+          "窗口外剔除": {"type": "integer"},
+          "必改环节": {"type": "array", "items": {"type": "string"}},
+          "食安相关差评": {"type": "integer"}
+        }
+      },
+      "stat": {
+        "type": "array",
+        "description": "环节统计表：本周/上周/环比/占比/优先级",
+        "items": {
+          "type": "object",
+          "properties": {
+            "环节": {"type": "string", "enum": ["菜品质量", "服务态度", "等位与出餐", "环境卫生", "价格感知", "物流配送", "待定性"]},
+            "本周": {"type": "integer"},
+            "上周": {"type": ["integer", "string"]},
+            "环比": {"type": "string", "description": "样本 <5 只报计数不下结论"},
+            "占比": {"type": "string"},
+            "优先级": {"type": "string", "enum": ["P0 必改", "持续观察", "—"]}
+          }
+        }
+      },
+      "todo": {
+        "type": "array",
+        "description": "整改清单骨架（模型补写可验收动作+责任人）",
+        "items": {"type": "object"}
+      }
+    },
+    "x-rendered-from": "capability:classify_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/差评整改清单.xlsx", "out/环节占比.png", "out/classify_flow.json"],
+  "constraints": {
+    "segments": ["菜品质量", "服务态度", "等位与出餐", "环境卫生", "价格感知", "物流配送"],
+    "severity_weights": {"食安命中": 3, "菜品质量": 2, "服务态度": 2, "其他": 1},
+    "pareto_rule": "加权累计 ≤80% 列「本周必改」",
+    "small_sample_rule": "环节样本 <5 条不做环比结论",
+    "food_safety_rule": "异物/变质/中毒类无论占比多小都进必改",
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

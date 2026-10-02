@@ -1,0 +1,85 @@
+{
+  "skill_id": "de_local_02_sk01",
+  "name": "平台评价采集",
+  "type": "atomic",
+  "input": {
+    "type": "object",
+    "required": ["platforms"],
+    "properties": {
+      "platforms": {
+        "type": "array",
+        "description": "采集平台列表：美团 / 点评 / 抖音",
+        "items": {"type": "string", "enum": ["美团", "点评", "抖音"]}
+      },
+      "channel": {
+        "type": "string",
+        "description": "采集通道：A=开放接口只读 / B=人工导出（降级）",
+        "enum": ["A", "B"]
+      },
+      "frequency": {
+        "type": "string",
+        "description": "采集频率，建议 ≤ 30 分钟以守住差评 2 小时响应窗口"
+      },
+      "last_success_at": {
+        "type": "string",
+        "description": "上次成功采集时间（增量起点），通道 B 填导出日"
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["field_map", "operation", "limitation"],
+    "properties": {
+      "field_map": {
+        "type": "array",
+        "description": "三平台统一字段映射（评价ID/星级/正文/平台/订单号/发布时间/回复状态）",
+        "items": {
+          "type": "object",
+          "properties": {
+            "业务字段": {"type": "string"},
+            "系统字段": {"type": "string"},
+            "方向": {"type": "string", "description": "读 / 读写；写操作仅限经人工确认的回复"},
+            "说明": {"type": "string"}
+          }
+        }
+      },
+      "operation": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "用户需要在其平台执行的步骤（授权绑定 / 导出操作 / 对账）"
+      },
+      "summary": {
+        "type": "object",
+        "description": "采集结果汇总：各平台新增条数与星级分布、未回复差评数、通道与新鲜度",
+        "properties": {
+          "平台": {"type": "string"},
+          "新增条数": {"type": "integer"},
+          "差评": {"type": "integer"},
+          "中评": {"type": "integer"},
+          "好评": {"type": "integer"},
+          "未回复差评": {"type": "integer"},
+          "通道": {"type": "string"}
+        }
+      },
+      "degraded": {
+        "type": "array",
+        "items": {"type": "object", "properties": {"平台": {"type": "string"}, "状态": {"type": "string"}, "最后成功时间": {"type": "string"}, "建议动作": {"type": "string"}}},
+        "description": "采集中断/降级清单；双通道不可用时输出，不编造数据"
+      },
+      "limitation": {
+        "type": "string",
+        "description": "明确声明本资产不能自动完成该操作"
+      }
+    },
+    "x-rendered-from": "capability:connector_io"
+  },
+  "constraints": {
+    "max_input_length": 5000,
+    "collect_frequency_max_minutes": 30,
+    "read_only": true,
+    "human_confirmation_points": ["首次授权绑定门店", "回复发布动作"],
+    "forbidden": ["爬虫抓取", "删改评价", "采集评价外个人信息", "账号密码托管"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}

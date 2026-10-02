@@ -1,0 +1,17 @@
+{
+  "shop": "陈记酸菜鱼（万达店）",
+  "week_start": "2026-09-21",
+  "last_week": {"菜品质量": 3, "服务态度": 1, "等位与出餐": 5, "环境卫生": 0, "价格感知": 2, "物流配送": 1},
+  "reviews": [
+    {"id": "M-2201", "text": "鱼汤里有头发丝", "stars": 1, "review_time": "2026-09-22 08:12", "order_amount": 128},
+    {"id": "M-2202", "text": "等了45分钟才上菜，还上错菜", "stars": 2, "review_time": "2026-09-23 08:10", "order_amount": 34},
+    {"id": "M-2206", "text": "涨价了分量还少，不值这个价", "stars": 2, "review_time": "2026-09-23 07:55", "order_amount": 26},
+    {"id": "P-3308", "text": "图片和实物不符，宣传的大份上来的很小", "stars": 2, "review_time": "2026-09-24 20:30", "order_amount": 88},
+    {"id": "D-1103", "text": "等了两小时才吃上，桌子油腻腻的没擦", "stars": 2, "review_time": "2026-09-24 21:05", "order_amount": 156},
+    {"id": "D-1105", "text": "再也不来了", "stars": 1, "review_time": "2026-09-25 22:00", "order_amount": 60},
+    {"id": "D-1199", "text": "外卖等了90分钟，到手都凉透了", "stars": 1, "review_time": "2026-09-26 19:20", "order_amount": 45},
+    {"id": "M-2210", "text": "服务员爱答不理，催单还被怼", "stars": 2, "review_time": "2026-09-27 12:40", "order_amount": 210},
+    {"id": "P-3311", "text": "等位40分钟，环境倒是还行", "stars": 2, "review_time": "2026-09-28 18:30", "order_amount": 95},
+    {"id": "P-3312", "text": "这条是上周五的老差评补录", "stars": 2, "review_time": "2026-09-19 18:00", "order_amount": 70}
+  ]
+}

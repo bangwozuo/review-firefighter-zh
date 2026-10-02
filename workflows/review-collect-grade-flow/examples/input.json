@@ -1,0 +1,13 @@
+{
+  "shop": "陈记酸菜鱼（万达店）",
+  "collect_at": "2026-09-30 09:00",
+  "channel": "A",
+  "reviews": [
+    {"id": "M-2201", "platform": "美团", "stars": 1, "text": "鱼汤里有头发丝，这还怎么吃，太恶心了", "review_time": "2026-09-30 08:12", "reply_status": "未回复", "order_id": "MT90012"},
+    {"id": "M-2202", "platform": "美团", "stars": 2, "text": "等了45分钟才上菜，孩子都饿哭了，味道还行", "review_time": "2026-09-30 07:40", "reply_status": "未回复", "order_id": "MT90018"},
+    {"id": "D-1103", "platform": "抖音", "stars": 3, "text": "真是绝了，等了两小时才吃上，真是谢谢了", "review_time": "2026-09-29 21:05", "reply_status": "未回复", "order_id": "DY10033"},
+    {"id": "D-1104", "platform": "抖音", "stars": 4, "text": "酸菜很正，鱼片嫩，下次还来", "review_time": "2026-09-29 20:11", "reply_status": "未回复", "order_id": "DY10040"},
+    {"id": "P-3305", "platform": "点评", "stars": 5, "text": "环境好服务好，性价比高，值得推荐", "review_time": "2026-09-29 19:30", "reply_status": "未回复", "order_id": "DP20077"},
+    {"id": "P-3306", "platform": "点评", "stars": 3, "text": "口味一般，上菜稍慢，还可以接受吧", "review_time": "2026-09-29 19:02", "reply_status": "已回复", "order_id": "DP20081"}
+  ]
+}

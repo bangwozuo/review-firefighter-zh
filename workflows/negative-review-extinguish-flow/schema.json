@@ -1,0 +1,88 @@
+{
+  "workflow_id": "de_local_02_wf03",
+  "name": "差评灭火回复生成",
+  "type": "composite",
+  "skill_refs": ["de_local_02_sk02", "de_local_02_sk03", "de_local_02_sk04"],
+  "input": {
+    "type": "object",
+    "required": ["reviews"],
+    "properties": {
+      "shop": {"type": "string", "description": "门店名"},
+      "policy": {"type": "string", "description": "补偿授权口径，如「单笔授权上限 20 元」"},
+      "now": {"type": "string", "description": "当前时间（ISO），用于黄金 2 小时倒计时；缺省按出现时刻起算"},
+      "reviews": {
+        "type": "array",
+        "description": "差评数组；升级信号（12315/媒体/律师函/集体投诉/食安）命中即转人工",
+        "items": {
+          "type": "object",
+          "required": ["id", "platform", "text"],
+          "properties": {
+            "id": {"type": "string"},
+            "platform": {"type": "string", "enum": ["美团", "点评", "抖音"]},
+            "text": {"type": "string", "description": "差评原文"},
+            "order_amount": {"type": ["number", "null"], "description": "订单实付金额（元）；缺失标「金额待补」不发券"},
+            "review_time": {"type": "string", "description": "差评发布时间（ISO）"},
+            "reply_status": {"type": "string", "enum": ["已回复", "未回复"]},
+            "order_id": {"type": "string", "description": "订单号；食安类差评缺失时按无法核实并入人工清单"}
+          }
+        }
+      }
+    }
+  },
+  "output": {
+    "type": "object",
+    "required": ["summary", "items", "escalated"],
+    "properties": {
+      "summary": {
+        "type": "object",
+        "description": "差评数 / 升级数 / 可自动数 / 根因分布 / 未回复数 / 补偿梯度与红线",
+        "properties": {
+          "差评总数": {"type": "integer"},
+          "升级转人工": {"type": "integer"},
+          "可自动灭火": {"type": "integer"},
+          "根因分布": {"type": "object"},
+          "未回复差评": {"type": "integer"},
+          "回复率目标": {"type": "string"}
+        }
+      },
+      "items": {
+        "type": "array",
+        "description": "灭火作战表",
+        "items": {
+          "type": "object",
+          "properties": {
+            "评价ID": {"type": "string"},
+            "主根因": {"type": "string", "enum": ["质量", "服务", "物流", "期望差", "价格", "待人工确认"]},
+            "次根因": {"type": "string"},
+            "响应档位": {"type": "string", "description": "≤2 小时 / 2-24 小时 / >24 小时（效果减半）"},
+            "补偿方案": {"type": "string", "description": "梯度内金额或专人对接；缺失标「金额待补」"},
+            "授权校验": {"type": "string", "description": "✅ / 🔴 超授权"},
+            "处置": {"type": "string"}
+          }
+        }
+      },
+      "escalated": {
+        "type": "array",
+        "description": "升级清单：触发信号 + 人工动作，AI 停止自动回复",
+        "items": {"type": "object"}
+      }
+    },
+    "x-rendered-from": "capability:extinguish_flow"
+  },
+  "scripts": {
+    "run_flow": "scripts/run_flow.py",
+    "usage": "python3 scripts/run_flow.py --input input.json --outdir out"
+  },
+  "artifacts": ["out/灭火作战表.xlsx", "out/extinguish_flow.json"],
+  "constraints": {
+    "escalation_signals": ["12315", "媒体曝光", "律师函", "集体投诉", "食安词"],
+    "cause_priority": ["质量", "服务", "物流", "期望差", "价格"],
+    "golden_window_hours": 2,
+    "reply_rate_target": "100%",
+    "compensation_tiers": {"lt50": "5-10元券", "50-200": "订单额10%-20%", "gt200": "专人对接+电话"},
+    "cause_factor": {"质量": "顶格", "价格": "下限", "其他": "中位"},
+    "banned": ["删差评交换补偿", "改好评返现", "公开区承诺退款金额"],
+    "ai_label_required": true,
+    "human_review_required": true
+  }
+}
