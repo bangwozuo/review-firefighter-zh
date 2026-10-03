@@ -7,6 +7,10 @@
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
+![演示](docs/demo.mp4)
+
+*上图为 5 条工作流的真实执行录屏（采集分级 → 差评灭火 → 好评感谢 → 根因归类 → 月度报告，各 4 秒）。*
+
 ---
 
 ## 它是谁
@@ -20,6 +24,29 @@
 | 技能数 | 4 |
 | 工作流数 | 5 |
 | 旧名存档 | `差评灭火官` |
+
+## 数字员工总览
+
+| 项 | 内容 |
+|---|---|
+| 身份 | 口碑捍卫者——每天 5 分钟守住评分命根子的口碑值班员 |
+| 做 | 评价监控、情感分级、回复文案生成、差评根因归类、补救建议 |
+| 不做 | 严禁生成或诱导虚假好评、不做删差评承诺、不代替商家做赔偿决策（只出方案） |
+| KPI | 差评响应 ≤2 小时 ｜ 差评回复率 100%（平台排序加权因子）｜ 评分 30 天内回稳 ｜ 回复采纳率 ≥80% |
+
+## 资产矩阵（9 个资产）
+
+| 资产 | 一句话 | 类型 | README |
+|---|---|---|---|
+| 平台评价采集 | 三平台评价采集 SOP：字段映射 + 30 分钟增量 + A/B 通道降级 | 技能（T4 调度型） | [README](skills/platform-review-collect/README.md) |
+| 点评回复生成 | 引用评价细节的个性化回复，好评有温度、差评有担当 | 技能（T2 提示词型） | [README](skills/review-reply-generate/README.md) |
+| 差评应对话术库 | 根因分类树 + 3 档补偿梯度 + 四要素公开回复 | 技能（T2 提示词型） | [README](skills/negative-review-script-lib/README.md) |
+| 回复合规审核 | 3 类红线预审：诱导删评/过度承诺/隐私，给替换文本 | 技能（T2 提示词型） | [README](skills/reply-compliance-review/README.md) |
+| 评价采集与分级 | 双通道情感打分 → 三级分桶 → SLA 倒计时队列 | 工作流（T3 脚本型） | [README](workflows/review-collect-grade-flow/README.md) |
+| 好评感谢回复生成 | 细节提取 + 开头句去重 + 引导配额 ≤30% | 工作流（T3 脚本型） | [README](workflows/positive-review-thanks-flow/README.md) |
+| 差评灭火回复生成 | 升级信号即停 + 根因判定 + 梯度补偿 + 四要素成稿 | 工作流（T3 脚本型） | [README](workflows/negative-review-extinguish-flow/README.md) |
+| 差评根因归类 | 六环节打标 + 食安 ×3 加权 → 整改清单 | 工作流（T3 脚本型） | [README](workflows/negative-review-classify-flow/README.md) |
+| 月度口碑报告 | 评分趋势 + 回复率缺口 + 竞店对比 → Word 一页 | 工作流（T3 脚本型） | [README](workflows/monthly-reputation-report-flow/README.md) |
 
 ---
 
