@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，10 条差评（窗口内 8、显式剔除 2）→ 等位与出餐 33.3% 列 P0，菜品质量仅 1 条但因食安 ×3 加权同样进必改，产物落盘 Excel + PNG + JSON。*
 
 ## 实跑产物

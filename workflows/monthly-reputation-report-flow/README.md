@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，14 条评价 → 月均分 3.21（环比 -25.2%），差评回复率仅 14%（7 条差评 1 条已回复），根因 Top1 等位与出餐 44%，产物落盘 Word + PNG + JSON。*
 
 ## 实跑产物

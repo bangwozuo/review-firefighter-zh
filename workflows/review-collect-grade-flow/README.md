@@ -7,6 +7,8 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
+![演示视频](docs/assets/demo.mp4)
+
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，6 条评价 → 差评 2 / 中评 2 / 好评 2，转人工 1 条（食安信号「头发丝」），好评占比 33.3% 低于 ≥85% 健康线，产物落盘 Excel + PNG + JSON。*
 
 ## 实跑产物
