@@ -7,7 +7,7 @@
 
 ![输出预览](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/skills/review-reply-generate/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/review-firefighter-zh/blob/main/skills/review-reply-generate/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自实跑产物预览：3 条评价（5 星 / 2 星 / 3 星）生成 68 / 84 / 71 字回复，三条开头句各不相同，每条引用评价原文细节，批次自检全过。*
 

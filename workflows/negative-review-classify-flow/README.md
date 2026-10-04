@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/workflows/negative-review-classify-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/review-firefighter-zh/blob/main/workflows/negative-review-classify-flow/docs/assets/demo.mp4)** — 四幕检测叙事：业务钩子 → 真实执行 → 检查项逐条亮灯 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，10 条差评（窗口内 8、显式剔除 2）→ 等位与出餐 33.3% 列 P0，菜品质量仅 1 条但因食安 ×3 加权同样进必改，产物落盘 Excel + PNG + JSON。*
 

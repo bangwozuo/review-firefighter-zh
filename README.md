@@ -7,9 +7,9 @@
 [![NoKey](https://img.shields.io/badge/API%20Key-not%20required-success)](#资产形态)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 
-![演示](docs/assets/hero.gif)
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/docs/assets/hero.gif)
 
-*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](docs/demo.mp4)*
+*▲ 实时演示（自动循环）· [▶ 观看完整版合集视频](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/docs/demo.mp4)*
 
 *上图为 5 条工作流的真实执行录屏（采集分级 → 差评灭火 → 好评感谢 → 根因归类 → 月度报告，各 4 秒）。*
 

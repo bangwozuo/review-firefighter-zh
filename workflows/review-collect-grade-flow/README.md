@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
+🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/workflows/review-collect-grade-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/review-firefighter-zh/blob/main/workflows/review-collect-grade-flow/docs/assets/demo.mp4)** — 四幕流转叙事：业务钩子 → 真实执行 → 数据管线节点动画 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，6 条评价 → 差评 2 / 中评 2 / 好评 2，转人工 1 条（食安信号「头发丝」），好评占比 33.3% 低于 ≥85% 健康线，产物落盘 Excel + PNG + JSON。*
 
