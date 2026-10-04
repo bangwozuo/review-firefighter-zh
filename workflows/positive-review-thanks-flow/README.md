@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，5 条好评 → 带图 2 / 短评 2 / 纯星级 1，细节覆盖率 60%（达标），引导 1 条占 20%（上限 30%），开头句重复 0，产物落盘 Excel + JSON。*
 

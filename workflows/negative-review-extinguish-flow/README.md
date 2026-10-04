@@ -7,7 +7,7 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-![演示视频](docs/assets/demo.mp4)
+🎬 **[▶ 观看演示视频](docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，5 条差评 → 升级 1（「鱼汤里有头发丝，已经打12315了」）/ 可自动 4，根因逐条判定，补偿全部落在授权口径（单笔上限 20 元）内，产物落盘 Excel + JSON。*
 
