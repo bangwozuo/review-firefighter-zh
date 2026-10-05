@@ -7,7 +7,9 @@
 
 ![真实执行](docs/assets/run-terminal.png)
 
-🎬 **[▶ 观看演示视频（在线播放）](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/workflows/positive-review-thanks-flow/docs/assets/demo.mp4) · [GitHub 页](https://github.com/bangwozuo/review-firefighter-zh/blob/main/workflows/positive-review-thanks-flow/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
+![演示](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/workflows/positive-review-thanks-flow/docs/assets/demo.gif)
+
+🎬 **[▶ 观看高清完整版（mp4）](https://cdn.jsdelivr.net/gh/bangwozuo/review-firefighter-zh@main/workflows/positive-review-thanks-flow/docs/assets/demo.mp4)** — 四幕创作叙事：业务钩子 → 真实执行 → 要点到成稿演变 → 交付物
 
 *上图来自真实执行：`python scripts/run_flow.py --input examples/input.json --outdir out`，5 条好评 → 带图 2 / 短评 2 / 纯星级 1，细节覆盖率 60%（达标），引导 1 条占 20%（上限 30%），开头句重复 0，产物落盘 Excel + JSON。*
 
