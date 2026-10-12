@@ -119,22 +119,22 @@ review-firefighter-zh/
 
 ## 技能清单（4 个）
 
-| # | 技能 | 能力族 | 复杂度 | 提示词 | 文档 |
-|---|------|--------|--------|--------|------|
-| 1 | 平台评价采集 | 连接器数据读写 | `M` | [prompt.txt](skills/platform-review-collect/prompt.txt) | [docs](skills/platform-review-collect/docs/) |
-| 2 | 点评回复生成 | 评价回复生成 | `S` | [prompt.txt](skills/review-reply-generate/prompt.txt) | [docs](skills/review-reply-generate/docs/) |
-| 3 | 差评应对话术库 | 评价回复生成 | `S` | [prompt.txt](skills/negative-review-script-lib/prompt.txt) | [docs](skills/negative-review-script-lib/docs/) |
-| 4 | 回复合规审核 | 合规校验 | `S` | [prompt.txt](skills/reply-compliance-review/prompt.txt) | [docs](skills/reply-compliance-review/docs/) |
+| # | 技能 | 能力族 | 复杂度 | 说明文档 |
+|---|------|--------|--------|----------|
+| 1 | 平台评价采集 | 连接器数据读写 | `M` | [README](skills/platform-review-collect/README.md) |
+| 2 | 点评回复生成 | 评价回复生成 | `S` | [README](skills/review-reply-generate/README.md) |
+| 3 | 差评应对话术库 | 评价回复生成 | `S` | [README](skills/negative-review-script-lib/README.md) |
+| 4 | 回复合规审核 | 合规校验 | `S` | [README](skills/reply-compliance-review/README.md) |
 
 ## 工作流清单（5 条）
 
-| # | 工作流 | 阶段 | 复杂度 | 触发 | 定义 | 文档 |
-|---|--------|------|--------|------|------|------|
-| 1 | 评价采集与分级 | `P0` | `M` | 定时（每 2 小时巡检） | [SKILL.md](workflows/review-collect-grade-flow/SKILL.md) | [docs](workflows/review-collect-grade-flow/docs/) |
-| 2 | 好评感谢回复生成 | `P0` | `S` | 事件（新好评） | [SKILL.md](workflows/positive-review-thanks-flow/SKILL.md) | [docs](workflows/positive-review-thanks-flow/docs/) |
-| 3 | 差评灭火回复生成 | `P0` | `S` | 事件（新差评）→ 即时推送预警 | [SKILL.md](workflows/negative-review-extinguish-flow/SKILL.md) | [docs](workflows/negative-review-extinguish-flow/docs/) |
-| 4 | 差评根因归类 | `P0` | `S` | 定时（每周） | [SKILL.md](workflows/negative-review-classify-flow/SKILL.md) | [docs](workflows/negative-review-classify-flow/docs/) |
-| 5 | 月度口碑报告 | `P1` | `S` | 定时（每月 1 日） | [SKILL.md](workflows/monthly-reputation-report-flow/SKILL.md) | [docs](workflows/monthly-reputation-report-flow/docs/) |
+| # | 工作流 | 阶段 | 复杂度 | 触发 | 说明文档 |
+|---|--------|------|--------|------|----------|
+| 1 | 评价采集与分级 | `P0` | `M` | 定时（每 2 小时巡检） | [README](workflows/review-collect-grade-flow/README.md) |
+| 2 | 好评感谢回复生成 | `P0` | `S` | 事件（新好评） | [README](workflows/positive-review-thanks-flow/README.md) |
+| 3 | 差评灭火回复生成 | `P0` | `S` | 事件（新差评）→ 即时推送预警 | [README](workflows/negative-review-extinguish-flow/README.md) |
+| 4 | 差评根因归类 | `P0` | `S` | 定时（每周） | [README](workflows/negative-review-classify-flow/README.md) |
+| 5 | 月度口碑报告 | `P1` | `S` | 定时（每月 1 日） | [README](workflows/monthly-reputation-report-flow/README.md) |
 
 ---
 
