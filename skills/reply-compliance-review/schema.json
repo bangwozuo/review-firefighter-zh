@@ -4,7 +4,9 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["text"],
+    "required": [
+      "text"
+    ],
     "properties": {
       "text": {
         "type": "string",
@@ -23,16 +25,33 @@
   },
   "output": {
     "type": "object",
-    "required": ["verdict", "violations", "suggestions"],
+    "required": [
+      "verdict",
+      "violations",
+      "suggestions"
+    ],
     "properties": {
       "verdict": {
         "type": "object",
         "description": "审核结论：受检文本量 / 三级计数 / 整体判定（通过 / 修改后发布 / 退回重写）",
         "properties": {
-          "红线": {"type": "integer"},
-          "警告": {"type": "integer"},
-          "提示": {"type": "integer"},
-          "整体判定": {"type": "string", "enum": ["通过", "修改后发布", "退回重写"]}
+          "红线": {
+            "type": "integer"
+          },
+          "警告": {
+            "type": "integer"
+          },
+          "提示": {
+            "type": "integer"
+          },
+          "整体判定": {
+            "type": "string",
+            "enum": [
+              "通过",
+              "修改后发布",
+              "退回重写"
+            ]
+          }
         }
       },
       "violations": {
@@ -41,18 +60,43 @@
         "items": {
           "type": "object",
           "properties": {
-            "#": {"type": "string"},
-            "级别": {"type": "string", "enum": ["🔴 红线", "🟡 警告", "🔵 提示"]},
-            "原文片段": {"type": "string"},
-            "命中红线": {"type": "string", "enum": ["诱导删改评价", "过度承诺与虚假信息", "隐私与不当互动"]},
-            "依据": {"type": "string"},
-            "合规改法": {"type": "string", "description": "可直接替换的文本"}
+            "#": {
+              "type": "string"
+            },
+            "级别": {
+              "type": "string",
+              "enum": [
+                "🔴 红线",
+                "🟡 警告",
+                "🔵 提示"
+              ]
+            },
+            "原文片段": {
+              "type": "string"
+            },
+            "命中红线": {
+              "type": "string",
+              "enum": [
+                "诱导删改评价",
+                "过度承诺与虚假信息",
+                "隐私与不当互动"
+              ]
+            },
+            "依据": {
+              "type": "string"
+            },
+            "合规改法": {
+              "type": "string",
+              "description": "可直接替换的文本"
+            }
           }
         }
       },
       "suggestions": {
         "type": "array",
-        "items": {"type": "string"},
+        "items": {
+          "type": "string"
+        },
         "description": "整体改写方向与需人工核实的事实项"
       }
     },
@@ -60,11 +104,28 @@
   },
   "constraints": {
     "max_input_length": 5000,
-    "redline_categories": ["诱导删改评价", "过度承诺与虚假信息", "隐私与不当互动"],
-    "banned_terms": ["删差评", "改好评", "好评返现", "评价换礼", "亲亲", "宝宝", "小主"],
-    "legal_basis": ["《反不正当竞争法》第八条", "《广告法》第九条", "《个人信息保护法》"],
+    "redline_categories": [
+      "诱导删改评价",
+      "过度承诺与虚假信息",
+      "隐私与不当互动"
+    ],
+    "banned_terms": [
+      "删差评",
+      "改好评",
+      "好评返现",
+      "评价换礼",
+      "亲亲",
+      "宝宝",
+      "小主"
+    ],
+    "legal_basis": [
+      "《反不正当竞争法》第八条",
+      "《广告法》第九条",
+      "《个人信息保护法》"
+    ],
     "context_merge_rule": "分句书写不豁免，按语境合并判定",
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }

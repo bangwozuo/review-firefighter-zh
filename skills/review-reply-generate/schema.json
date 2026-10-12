@@ -4,7 +4,9 @@
   "type": "atomic",
   "input": {
     "type": "object",
-    "required": ["reviews"],
+    "required": [
+      "reviews"
+    ],
     "properties": {
       "reviews": {
         "type": "string",
@@ -27,7 +29,11 @@
   },
   "output": {
     "type": "object",
-    "required": ["replies", "root_cause", "recovery"],
+    "required": [
+      "replies",
+      "root_cause",
+      "recovery"
+    ],
     "properties": {
       "replies": {
         "type": "array",
@@ -35,12 +41,31 @@
         "items": {
           "type": "object",
           "properties": {
-            "#": {"type": "string"},
-            "星级": {"type": "string", "enum": ["4-5星", "3星", "1-2星"]},
-            "引用细节": {"type": "string", "description": "从评价原文提取的具体细节（菜名/店员/环节）"},
-            "回复文案": {"type": "string", "description": "好评 50-100 字 / 中差评 60-120 字"},
-            "字数": {"type": "integer"},
-            "处置动作": {"type": "string"}
+            "#": {
+              "type": "string"
+            },
+            "星级": {
+              "type": "string",
+              "enum": [
+                "4-5星",
+                "3星",
+                "1-2星"
+              ]
+            },
+            "引用细节": {
+              "type": "string",
+              "description": "从评价原文提取的具体细节（菜名/店员/环节）"
+            },
+            "回复文案": {
+              "type": "string",
+              "description": "好评 50-100 字 / 中差评 60-120 字"
+            },
+            "字数": {
+              "type": "integer"
+            },
+            "处置动作": {
+              "type": "string"
+            }
           }
         }
       },
@@ -50,12 +75,27 @@
       },
       "recovery": {
         "type": "array",
-        "items": {"type": "string"},
+        "items": {
+          "type": "string"
+        },
         "description": "可执行补救动作；涉及补偿标注需人工确认"
       },
       "escalation": {
         "type": "array",
-        "items": {"type": "object", "properties": {"评价ID": {"type": "string"}, "触发信号": {"type": "string"}, "建议动作": {"type": "string"}}},
+        "items": {
+          "type": "object",
+          "properties": {
+            "评价ID": {
+              "type": "string"
+            },
+            "触发信号": {
+              "type": "string"
+            },
+            "建议动作": {
+              "type": "string"
+            }
+          }
+        },
         "description": "转人工清单（12315/媒体曝光/律师函/集体投诉/食安中毒）；无则为空"
       }
     },
@@ -63,11 +103,26 @@
   },
   "constraints": {
     "max_input_length": 5000,
-    "reply_length": {"positive": [50, 100], "neutral_negative": [60, 120]},
+    "reply_length": {
+      "positive": [
+        50,
+        100
+      ],
+      "neutral_negative": [
+        60,
+        120
+      ]
+    },
     "response_window_hours": 2,
     "detail_quote_required": true,
-    "forbidden": ["好评返现", "评价换礼", "亲亲/宝宝等称呼", "万能模板单句回复"],
+    "forbidden": [
+      "好评返现",
+      "评价换礼",
+      "亲亲/宝宝等称呼",
+      "万能模板单句回复"
+    ],
     "ai_label_required": true,
-    "human_review_required": true
+    "human_review_required": true,
+    "external_api_required": false
   }
 }
